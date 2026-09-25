@@ -1,0 +1,11 @@
+node_modules/
+dist/
+coverage/
+.env
+.env.*
+*.log
+.midnight-state.json
+.midnight-wallet-state/
+midnight-level-db/
+*-state/
+.DS_Store

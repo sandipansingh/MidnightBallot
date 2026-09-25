@@ -1,0 +1,32 @@
+/*
+ * MidnightBallot privacy model
+ * PUBLIC: ballotCount and ballotCommitments are ledger state. Every accepted
+ * transaction increases turnout by one and publishes a ballot commitment.
+ * PRIVATE: privateBallot supplies a Boolean choice and a random 32-byte nonce
+ * to the proving circuit. Neither value is placed on the ledger.
+ * The circuit deliberately discloses only their hash commitment so the ledger
+ * can reject an exact replay. A fresh nonce is essential to hide the choice.
+ */
+pragma language_version >= 0.23;
+
+import CompactStandardLibrary;
+
+export struct Ballot {
+    choice: Boolean;
+    nonce: Bytes<32>;
+}
+
+witness privateBallot(): Ballot;
+
+export ledger ballotCount: Counter;
+export ledger ballotCommitments: Set<Bytes<32>>;
+
+export circuit castBallot(): [] {
+    const ballot = privateBallot();
+    const commitment = persistentHash<Ballot>(ballot);
+    const publicCommitment = disclose(commitment);
+
+    assert(!ballotCommitments.member(publicCommitment), "Ballot already committed");
+    ballotCommitments.insert(publicCommitment);
+    ballotCount.increment(1);
+}
