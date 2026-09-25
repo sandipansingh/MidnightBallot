@@ -1,0 +1,12 @@
+{
+  "preview": {
+    "address": "899999e2a64dcee8086d0a1aa998fb8af4d7068151351d74bb61696ef8f133fa",
+    "deployer": "mn_addr_preview17ryw8d53vhx7qmlyhuw63rt9nvwzytg59q5rw78h7g9cd352lfps586mam",
+    "deployedAt": "2026-09-24T19:18:02.596Z"
+  },
+  "preprod": {
+    "address": "f33d9335a6b70fb0585648f8d912b05f29fbf996068c29168f6225c4df866cd2",
+    "deployer": "mn_addr_preprod1pll6ts062w7d7x87pukf9vd64x99fejhtmwexvrklqn9232vufcqgtfzuc",
+    "deployedAt": "2026-09-25T05:11:26.615Z"
+  }
+}
